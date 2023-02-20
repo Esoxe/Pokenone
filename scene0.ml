@@ -8,7 +8,7 @@ let h = 80.
 let center = 16.
 let wmaison =160.
 let hmaison = 100. 
-let a_starter = [||]
+let l_starter = []
 
 (*Definition des rectangle de collision lié a chaque element *)
 
@@ -25,11 +25,11 @@ let l_ball_collision  = [rec_ball_1;rec_ball_2;rec_ball_3]
 
 
 (*verifie si le starter est unique*)
-let parcours_starter starter =
+let rec parcours_starter starter l_starter =
   let test = ref true in
-  for i = 0 to Array.length a_starter - 1 do
-    if a_starter.(i) = starter then test := false
-    done ;
+  match l_starter with
+  |[] -> test := false
+  |t::q -> parcours_starter starter q
   !test
   
 
@@ -37,32 +37,18 @@ let parcours_starter starter =
 let rec random_pokemon  () =
   let x = Random.int (Array.length Pokenone.pokedex ) in
   let starter = Pokenone.pokedex.(x) in
-  if starter.element = Pokenone.Nucleaire || parcours_starter starter then random_pokemon ()
+  if starter.element = Pokenone.Nucleaire || parcours_starter starter l_starter then random_pokemon ()
   else starter.sort1 <- Pokenone.capacite_aleatoire starter.element ;
                          starter.attaque <- Pokenone.stats_starter starter ;
                          starter.defense <- Pokenone.stats_starter starter ;
-                         starter.vitesse  <- Pokenone.stats_starter starter
+                         starter.vitesse  <- Pokenone.stats_starter starter ;
+  starter
   
+let create_starter = 
+  while (List.length l_starter < 3 ) do
+  random_pokemon () :: l_starter
+done 
 
-let starter = Array.make 3 random_pokemon 
-
-let rec rectangle_check_ball checker rec_player l_ball_collision =
-  let open Raylib in
-  match l_ball_collision with
-  |[] -> (!checker,-1)
-  |t::q -> checker := not(check_collision_recs rec_player t) ; if !checker = false then (!checker,List.length q)
-                                                               else rectangle_check_ball checker rec_player q 
-
-
-let check_collision_ball checker rec_player l_texture =
-  let open Raylib in
-  let checker_ball,ball = rectangle_check_ball checker rec_player l_ball_collision in 
-  match checker_ball,ball with 
-  |true,_ -> ()
-  |_,2 ->draw_texture (List.nth l_texture 4) 0 0 Color.white
-  |_,1 ->draw_texture (List.nth l_texture 4) 0 0 Color.white
-  |_,0 ->draw_texture (List.nth l_texture 4) 0 0 Color.white
-  |_,_ -> ()
 
 (*Chargement de tous les elements*)
 let draw_scene0 l_texture=
@@ -79,3 +65,23 @@ let draw_scene0 l_texture=
     draw_rectangle_lines_ex rec_ball_2 5.0 Color.black ;
     draw_rectangle_lines_ex rec_ball_3 5.0 Color.black  
 
+let draw_starter l_texture n  ball =
+  draw_texture (List.nth l_texture (n+(List.nth l_starter ball ).Pokenone.numero_pokedex))
+
+
+let rec rectangle_check_ball checker rec_player l_ball_collision =
+  let open Raylib in
+  match l_ball_collision with
+  |[] -> (!checker,-1)
+  |t::q -> checker := not(check_collision_recs rec_player t) ; if !checker = false then (!checker,List.length q)
+                                                               else rectangle_check_ball checker rec_player q 
+    
+    
+let check_collision_ball checker rec_player l_texture n =      
+  let checker_ball,ball = rectangle_check_ball checker rec_player l_ball_collision in 
+  match checker_ball,ball with 
+  |true,_ -> ()
+  |_,2 -> draw_starter l_texture n ball  
+  |_,1 -> draw_starter l_texture n ball
+  |_,0 -> draw_starter l_texture n ball
+  |_,_ -> ()
