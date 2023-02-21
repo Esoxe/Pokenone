@@ -9,7 +9,7 @@ let center = 16.
 let wmaison =160.
 let hmaison = 100. 
 let a_starter =   [|Pokenone.pokedex.(1);Pokenone.pokedex.(2);Pokenone.pokedex.(3)|]
-let h_rectangle_page = 40.
+let h_rectangle_page = 42.
 let w_rectangle_page = 334.
 
 (*Definition des rectangle de collision lié a chaque element *)
@@ -73,20 +73,18 @@ let draw_scene0 l_texture=
     draw_rectangle_lines_ex rec_ball_2 5.0 Color.black ;
     draw_rectangle_lines_ex rec_ball_3 5.0 Color.black  
 
-let setup_rectangle_page x y w h line_thic =
+let setup_rectangle_page x y w h line_thic ball =
 let open Raylib in
-  let rec_niveau = Rectangle.create x y w h ball in
+  let rec_niveau = Rectangle.create x y w h  in
   let rec_attaque = Rectangle.create x (y+.h) w h in
   let rec_defense = Rectangle.create x (y+.2.*.h) w h in
   let rec_vitesse = Rectangle.create x (y+.3.*.h) w h in
-  draw_rectangle_rec rec_niveau Color.lightgray ;draw_rectangle_lines_ex rec_niveau line_thic Color.darkgray ; draw_text ""
-  draw_rectangle_rec rec_attaque Color.lightgray ;draw_rectangle_lines_ex rec_attaque line_thic Color.darkgray ;
+  draw_rectangle_rec rec_niveau Color.lightgray ;draw_rectangle_lines_ex rec_niveau line_thic Color.darkgray ;draw_text (a_starter.(ball).Pokenone.nom) 10 345 20 Color.black ;
+  draw_rectangle_rec rec_attaque Color.lightgray ;draw_rectangle_lines_ex rec_attaque line_thic Color.darkgray ; draw_text ("lv : "^string_of_int(a_starter.(ball).Pokenone.niveau)) 100 345 20 Color.black ;
   draw_rectangle_rec rec_defense Color.lightgray ;draw_rectangle_lines_ex rec_defense line_thic Color.darkgray ;
-  draw_rectangle_rec rec_vitesse Color.lightgray ;draw_rectangle_lines_ex rec_vitesse line_thic Color.darkgray ;
+  draw_rectangle_rec rec_vitesse Color.lightgray ;draw_rectangle_lines_ex rec_vitesse line_thic Color.darkgray 
   
-
-
-    let draw_starter l_texture n ball a =
+let draw_starter l_texture n ball a =
   let open Raylib in
   if ball < 3 then begin draw_texture (List.nth l_texture (n+a.(ball).Pokenone.numero_pokedex)) 0 0 Color.white ; 
                    setup_rectangle_page 0. w_rectangle_page w_rectangle_page h_rectangle_page 5. ball
