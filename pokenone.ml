@@ -13,6 +13,7 @@ numero_pokedex : int ;
 mutable attaque : int ;
 mutable defense : int ;
 mutable vitesse : int ;
+mutable niveau : int ;
 mutable sort1 : capacite ;
 mutable sort2 : capacite 
 }
@@ -31,21 +32,21 @@ let capacite_dragon = [{nom="Draco Meteor";degat=30};{nom="Dragon Breath";degat=
 let capacite_nucleaire = [{nom="Plasma Jet";degat=30};{nom="Radioactive Gas";degat=60};{nom="Radioactive Spread";degat=50};{nom="Internal Fusion";degat=40};{nom="Radioactive Cannon";degat=20};{nom="Atomic missile";degat=80}]
 
 (* initialisation de tous les pokemon du jeu *)
-let pokenone1 ={nom ="Quirkoko";element=Sombre;rarete=1;numero_pokedex=1;attaque=1;defense=1;vitesse=1;sort1={nom="";degat=1};sort2={nom="";degat=1}} 
-let pokenone2 ={nom ="Lampika";element=Magie;rarete=1;numero_pokedex=2;attaque=1;defense=1;vitesse=1;sort1={nom="";degat=1};sort2={nom="";degat=1}} 
-let pokenone3 ={nom ="cragon";element=Dragon;rarete=1;numero_pokedex=3;attaque=1;defense=1;vitesse=1;sort1={nom="";degat=1};sort2={nom="";degat=1}} 
-let pokenone4 ={nom ="Bellenobi";element=Eau;rarete=1;numero_pokedex=4;attaque=1;defense=1;vitesse=1;sort1={nom="";degat=1};sort2={nom="";degat=1}} 
-let pokenone5 ={nom ="Atlascar";element=Bagarre;rarete=1;numero_pokedex=5;attaque=1;defense=1;vitesse=1;sort1={nom="";degat=1};sort2={nom="";degat=1}} 
-let pokenone6 ={nom ="Prankatoo";element=Air;rarete=1;numero_pokedex=6;attaque=1;defense=1;vitesse=1;sort1={nom="";degat=1};sort2={nom="";degat=1}} 
-let pokenone7 ={nom ="Wreckoon";element=Terre;rarete=1;numero_pokedex=7;attaque=1;defense=1;vitesse=1;sort1={nom="";degat=1};sort2={nom="";degat=1}} 
-let pokenone8 ={nom ="Chopetal";element=Nature;rarete=1;numero_pokedex=8;attaque=1;defense=1;vitesse=1;sort1={nom="";degat=1};sort2={nom="";degat=1}} 
-let pokenone9 ={nom ="Anticoot";element=Nature;rarete=1;numero_pokedex=9;attaque=1;defense=1;vitesse=1;sort1={nom="";degat=1};sort2={nom="";degat=1}} 
-let pokenone10 ={nom ="Commodeen";element=Nucleaire;rarete=3;numero_pokedex=10;attaque=1;defense=1;vitesse=1;sort1={nom="";degat=1};sort2={nom="";degat=1}} 
-let pokenone11 ={nom ="Driftangle";element=Air;rarete=1;numero_pokedex=11;attaque=1;defense=1;vitesse=1;sort1={nom="";degat=1};sort2={nom="";degat=1}} 
-let pokenone12 ={nom ="Ponditz";element=Air;rarete=2;numero_pokedex=12;attaque=1;defense=1;vitesse=1;sort1={nom="";degat=1};sort2={nom="";degat=1}} 
-let pokenone13 ={nom ="Gustick";element=Terre;rarete=1;numero_pokedex=13;attaque=1;defense=1;vitesse=1;sort1={nom="";degat=1};sort2={nom="";degat=1}} 
-let pokenone14 ={nom ="Cursqueak";element=Bagarre;rarete=1;numero_pokedex=14;attaque=1;defense=1;vitesse=1;sort1={nom="";degat=1};sort2={nom="";degat=1}} 
-let pokenone15 ={nom ="Pigale";element=Air;rarete=3;numero_pokedex=15;attaque=1;defense=1;vitesse=1;sort1={nom="";degat=1};sort2={nom="";degat=1}} 
+let pokenone1 ={nom ="Quirkoko";element=Sombre;rarete=1;numero_pokedex=1;attaque=1;defense=1;vitesse=1;niveau=1;sort1={nom="";degat=1};sort2={nom="";degat=1}} 
+let pokenone2 ={nom ="Lampika";element=Magie;rarete=1;numero_pokedex=2;attaque=1;defense=1;vitesse=1;niveau=1;sort1={nom="";degat=1};sort2={nom="";degat=1}} 
+let pokenone3 ={nom ="cragon";element=Dragon;rarete=1;numero_pokedex=3;attaque=1;defense=1;vitesse=1;niveau=1;sort1={nom="";degat=1};sort2={nom="";degat=1}} 
+let pokenone4 ={nom ="Bellenobi";element=Eau;rarete=1;numero_pokedex=4;attaque=1;defense=1;vitesse=1;niveau=1;sort1={nom="";degat=1};sort2={nom="";degat=1}} 
+let pokenone5 ={nom ="Atlascar";element=Bagarre;rarete=1;numero_pokedex=5;attaque=1;defense=1;vitesse=1;niveau=1;sort1={nom="";degat=1};sort2={nom="";degat=1}} 
+let pokenone6 ={nom ="Prankatoo";element=Air;rarete=1;numero_pokedex=6;attaque=1;defense=1;vitesse=1;niveau=1;sort1={nom="";degat=1};sort2={nom="";degat=1}} 
+let pokenone7 ={nom ="Wreckoon";element=Terre;rarete=1;numero_pokedex=7;attaque=1;defense=1;vitesse=1;niveau=1;sort1={nom="";degat=1};sort2={nom="";degat=1}} 
+let pokenone8 ={nom ="Chopetal";element=Nature;rarete=1;numero_pokedex=8;attaque=1;defense=1;vitesse=1;niveau=1;sort1={nom="";degat=1};sort2={nom="";degat=1}} 
+let pokenone9 ={nom ="Anticoot";element=Nature;rarete=1;numero_pokedex=9;attaque=1;defense=1;vitesse=1;niveau=1;sort1={nom="";degat=1};sort2={nom="";degat=1}} 
+let pokenone10 ={nom ="Commodeen";element=Nucleaire;rarete=3;numero_pokedex=10;attaque=1;defense=1;niveau=1;vitesse=1;sort1={nom="";degat=1};sort2={nom="";degat=1}} 
+let pokenone11 ={nom ="Driftangle";element=Air;rarete=1;numero_pokedex=11;attaque=1;defense=1;vitesse=1;niveau=1;sort1={nom="";degat=1};sort2={nom="";degat=1}} 
+let pokenone12 ={nom ="Ponditz";element=Air;rarete=2;numero_pokedex=12;attaque=1;defense=1;vitesse=1;niveau=1;sort1={nom="";degat=1};sort2={nom="";degat=1}} 
+let pokenone13 ={nom ="Gustick";element=Terre;rarete=1;numero_pokedex=13;attaque=1;defense=1;vitesse=1;niveau=1;sort1={nom="";degat=1};sort2={nom="";degat=1}} 
+let pokenone14 ={nom ="Cursqueak";element=Bagarre;rarete=1;numero_pokedex=14;attaque=1;defense=1;vitesse=1;niveau=1;sort1={nom="";degat=1};sort2={nom="";degat=1}} 
+let pokenone15 ={nom ="Pigale";element=Air;rarete=3;numero_pokedex=15;attaque=1;defense=1;vitesse=1;niveau=1;sort1={nom="";degat=1};sort2={nom="";degat=1}} 
 let pokenone16 ={nom ="Serpenatee";element=Nature;rarete=2;numero_pokedex=16;attaque=1;defense=1;vitesse=1;sort1={nom="";degat=1};sort2={nom="";degat=1}} 
 let pokenone17 ={nom ="Germith";element=Terre;rarete=2;numero_pokedex=17;attaque=1;defense=1;vitesse=1;sort1={nom="";degat=1};sort2={nom="";degat=1}} 
 let pokenone18 ={nom ="Stormew";element=Sombre;rarete=1;numero_pokedex=18;attaque=1;defense=1;vitesse=1;sort1={nom="";degat=1};sort2={nom="";degat=1}} 
@@ -109,21 +110,13 @@ let capacite_aleatoire element =
   |_ -> List.nth capacite_nucleaire x
 
 
-(*générateur aléatoire*)
-
-
 (*Generation des statistique*)
-let stats_starter starter =
+let stat_aleatoire pokenone =
   let x = ref 0 in
-  match starter.rarete with
+  match pokenone.rarete with
   |1 -> while !x = 0 do x:= Random.int 21 done ; !x
   |2 -> while !x <=3 do x:= Random.int 21 done ; !x
   |3 -> while !x < 8 do x:= Random.int 21 done ; !x
   |4 -> while !x <12 do x:= Random.int 21 done ; !x
   |5 -> while !x <16 do x:= Random.int 21 done ; !x
   |_ -> failwith "rarete inconnu" 
-
-
-
-
-  
